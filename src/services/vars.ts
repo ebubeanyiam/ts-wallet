@@ -8,7 +8,7 @@ require("dotenv-safe").config({
 
 const vars = {
   env: process.env.NODE_ENV,
-  port: process.env.PORT,
+  port: process.env.NODE_PORT,
   mongo: {
     uri:
       process.env.NODE_ENV === "test"

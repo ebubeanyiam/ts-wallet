@@ -52,8 +52,6 @@ yarn start
 
 ## API Postman Collection for Testing
 
-https://github.com/mmucito/ewallet-rest-api/blob/master/ewallet.postman_collection.json
-
 ## Testing Locally...
 
 ### First you need to Create a Wallet

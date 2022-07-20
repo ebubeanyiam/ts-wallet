@@ -8,7 +8,9 @@ connect();
 const { port, env } = vars;
 
 // listen to requests
-app.listen(port, () => console.info(`server started on port ${port} (${env})`));
+app.listen(env === "development" ? port : process.env.PORT, () =>
+  console.info(`server started on port ${port} (${env})`)
+);
 
 /**
  * Exports express
