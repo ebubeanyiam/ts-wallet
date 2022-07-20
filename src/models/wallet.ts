@@ -1,10 +1,15 @@
 import mongoose from "mongoose";
+import { getSerializedBalance } from "../helpers/serializeBalance";
 
 interface WalletAttrs {
   alias: string;
   owner: string;
   authorizedPhonenumber: string;
 }
+
+// interface IWalletMethods {
+//   getSerializedBalance(): string;
+// }
 
 interface WalletModel extends mongoose.Model<IWallet> {
   newWallet(attrs: WalletAttrs): IWallet;
@@ -16,6 +21,7 @@ interface IWallet extends mongoose.Document {
   authorizedPhonenumber: string;
   balance: number;
   createdAt: string;
+  updatedAt?: string;
 }
 
 const walletSchema = new mongoose.Schema(
@@ -41,6 +47,16 @@ const walletSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc: any, ret: any) {
+        ret.id = ret._id;
+        ret.balance = getSerializedBalance(ret.balance);
+
+        delete ret._id;
+        delete ret.updatedAt;
+      },
+      versionKey: false,
+    },
   }
 );
 

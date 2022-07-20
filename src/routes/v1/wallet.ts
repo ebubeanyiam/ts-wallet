@@ -17,7 +17,7 @@ router
   //    * @apiGroup wallet
   //    * @apiPermission public
   //    *
-  //    * @apiHeader {String}   Token       Application access token
+  //    * @apiHeader {String}   Token         Application access token
   //    *
   //    * @apiSuccess {String}  user_id         User's id
   //    * @apiSuccess {String}  phonenumber       User's Phonenumber

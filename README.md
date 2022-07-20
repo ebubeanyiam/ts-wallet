@@ -62,7 +62,7 @@ yarn start
 curl -X POST \
   http://localhost:3000/v1/wallet \
   -H 'cache-control: no-cache' \
-  -H 'content-type: application/x-www-form-urlencoded' \
+  -H 'content-type: application/json; charset=utf-8' \
   -H 'token: 030c9874-23c0-367b-7e2b-aea506e851c4' \
   -d 'alias=default&phone_number=+2349076907017&user_id=Jhon20Doe'
 ```
