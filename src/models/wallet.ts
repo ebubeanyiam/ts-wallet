@@ -7,7 +7,7 @@ interface WalletAttrs {
 }
 
 interface WalletModel extends mongoose.Model<IWallet> {
-  newWallet(attrs: WalletAttrs): number;
+  newWallet(attrs: WalletAttrs): IWallet;
 }
 
 interface IWallet extends mongoose.Document {
@@ -23,7 +23,6 @@ const walletSchema = new mongoose.Schema(
     alias: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     owner: {

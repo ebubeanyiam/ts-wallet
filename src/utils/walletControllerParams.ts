@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, query } from "express-validator";
 
 export const newWallet = [
   body("user_id")
@@ -15,4 +15,11 @@ export const newWallet = [
     .trim()
     .isLength({ min: 9, max: 14 })
     .withMessage("Phone number must be provided"),
+];
+
+export const viewWallets = [
+  query("user_id")
+    .trim()
+    .isLength({ min: 4, max: 30 })
+    .withMessage("User ID must be valid"),
 ];
