@@ -20,6 +20,6 @@ export const newWallet = [
 export const viewWallets = [
   query("user_id")
     .trim()
-    .isLength({ min: 4, max: 30 })
+    .isLength({ min: 4, max: 100 })
     .withMessage("User ID must be valid"),
 ];
