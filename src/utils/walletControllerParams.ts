@@ -3,7 +3,7 @@ import { body, query } from "express-validator";
 export const newWallet = [
   body("user_id")
     .trim()
-    .isLength({ min: 4, max: 30 })
+    .isLength({ min: 4, max: 100 })
     .withMessage("User ID must be valid"),
 
   body("alias")

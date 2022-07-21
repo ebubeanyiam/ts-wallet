@@ -1,16 +1,10 @@
-import vars from "./services/vars";
-import app from "./services/app";
-import { connect } from "./services/mongoose";
+import "./services/cluster";
 
-// open mongoose connection
-connect();
+// listen to requests without monitoring cluster
 
-const { port, env } = vars;
-
-// listen to requests
-app.listen(env === "development" ? port : process.env.PORT, () =>
-  console.info(`server started on port ${port} (${env})`)
-);
+// app.listen(env === "development" ? port : process.env.PORT, () =>
+//   console.info(`server started on port ${port} (${env})`)
+// );
 
 /**
  * Exports express
