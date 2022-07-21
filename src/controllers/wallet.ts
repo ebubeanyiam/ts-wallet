@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
 import status from "http-status";
+import { Request, Response } from "express";
 
 import { Wallet } from "../models";
+import { NotFoundError } from "../errors";
 
 export const createWallet = async (req: Request, res: Response) => {
   const {
@@ -21,7 +22,7 @@ export const createWallet = async (req: Request, res: Response) => {
       .status(status.CREATED)
       .json({ status: true, message: "Wallet Created", data: wallet });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -37,6 +38,28 @@ export const fetchWallets = async (req: Request, res: Response) => {
       .status(status.OK)
       .json({ status: true, message: "Fetched Wallets", data: wallets });
   } catch (error) {
-    console.log(error);
+    throw error;
+  }
+};
+
+export const fetchSingleWallet = async (req: Request, res: Response) => {
+  const { walletID: _id } = req.params;
+  const { user_id: owner } = req.query;
+
+  try {
+    const wallet = await Wallet.findOne({
+      owner,
+      _id,
+    });
+
+    if (!wallet) {
+      throw new NotFoundError("No wallet found");
+    }
+
+    res
+      .status(status.OK)
+      .json({ status: true, message: "Fetched Wallet", data: wallet });
+  } catch (error) {
+    throw error;
   }
 };

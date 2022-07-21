@@ -1,4 +1,4 @@
-interface ErrorArray {
+export interface ErrorArray {
   field?: string;
   issue?: string;
 }

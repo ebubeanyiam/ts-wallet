@@ -1,4 +1,7 @@
-import { body, query } from "express-validator";
+import { isValidObjectId } from "mongoose";
+import { body, query, param } from "express-validator";
+
+import { BadRequestError } from "../errors";
 
 export const newWallet = [
   body("user_id")
@@ -22,4 +25,24 @@ export const viewWallets = [
     .trim()
     .isLength({ min: 4, max: 100 })
     .withMessage("User ID must be valid"),
+];
+
+export const viewWallet = [
+  query("user_id")
+    .trim()
+    .isLength({ min: 4, max: 100 })
+    .withMessage("User ID must be valid"),
+
+  param("walletID").customSanitizer((value) => {
+    if (!isValidObjectId(value)) {
+      throw new BadRequestError([
+        {
+          field: "Wallet Id",
+          issue: "Invalid Wallet Id",
+        },
+      ]);
+    }
+
+    return value;
+  }),
 ];

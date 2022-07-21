@@ -13,6 +13,6 @@ export const errorHandler = (
   }
 
   res
-    .status(400)
+    .status(500)
     .send({ message: err.message || "Something went wrong", status: false });
 };

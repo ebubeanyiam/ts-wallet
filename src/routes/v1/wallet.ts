@@ -1,7 +1,17 @@
 import express from "express";
 
-import { createWallet, fetchWallets } from "../../controllers/wallet";
-import { newWallet, viewWallets } from "../../utils/walletControllerParams";
+import {
+  createWallet,
+  fetchWallets,
+  fetchSingleWallet,
+} from "../../controllers/wallet";
+
+import {
+  newWallet,
+  viewWallets,
+  viewWallet,
+} from "../../utils/walletControllerParams";
+
 import { validateRequest } from "../../middlewares/validateRequest";
 
 const router = express.Router();
@@ -35,7 +45,7 @@ router
   /**
   //    * @public   
   //    * @api {get} v1/wallet 
-  //    * @apiDescription Fetch a Wallet
+  //    * @apiDescription Fetch all Wallets
   //    * @apiVersion 1.0.0
   //    * @apiName Fetch Wallets
   //    * @apiGroup wallet
@@ -54,5 +64,29 @@ router
   //    * @apiError (Forbidden 500)    Internal Server Error    Server encountered issues
 */
   .get(viewWallets, validateRequest, fetchWallets);
+
+router
+  .route("/:walletID")
+  /**
+  //    * @public   
+  //    * @api {get} v1/wallet 
+  //    * @apiDescription Fetch a single Wallet
+  //    * @apiVersion 1.0.0
+  //    * @apiName Fetch Wallets
+  //    * @apiGroup wallet
+  //    * @apiPermission private
+  //    *
+  //    * @apiHeader {String}   Token       Application access token
+  //    *
+  //    * @apiSuccess {String}  user_id         User's id
+  //    * @apiSuccess {String}  phonenumber       User's Phonenumber
+  //    * @apiSuccess {String}  alias      Wallet alias
+  //    * @apiSuccess {String}  balance    Customer's balance
+  //    * @apiSuccess {Date}    createdAt  Timestamp
+  //    *
+  //    * @apiError (Unauthorized 401) Unauthorized   Only authenticated calls can access the data
+  //    * @apiError (Forbidden 500)    Internal Server Error    Server encountered issues
+*/
+  .get(viewWallet, validateRequest, fetchSingleWallet);
 
 export default router;

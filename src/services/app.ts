@@ -39,7 +39,7 @@ app.use(cors());
 app.use("/v1", routes);
 
 app.all("*", () => {
-  throw new NotFoundError();
+  throw new NotFoundError("Route Not Found");
 });
 
 // Handle Application errors
