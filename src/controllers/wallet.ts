@@ -24,6 +24,7 @@ export const createWallet = async (req: Request, res: Response) => {
       .status(status.CREATED)
       .json({ status: true, message: "Wallet Created", data: wallet });
   } catch (error) {
+    console.log("controller", error);
     throw error;
   }
 };
