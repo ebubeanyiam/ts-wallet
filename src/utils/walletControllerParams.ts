@@ -17,7 +17,7 @@ export const newWallet = [
 
   body("phone_number")
     .trim()
-    .isLength({ min: 9, max: 14 })
+    .isLength({ min: 9, max: 15 })
     .withMessage("Phone number must be provided"),
 ];
 
