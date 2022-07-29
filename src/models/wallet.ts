@@ -60,7 +60,7 @@ const walletSchema = new mongoose.Schema(
   }
 );
 
-walletSchema.virtual("transaction", {
+walletSchema.virtual("transactions", {
   ref: "Transaction",
   localField: "_id",
   foreignField: "wallet",

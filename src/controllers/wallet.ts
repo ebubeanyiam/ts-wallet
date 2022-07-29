@@ -35,7 +35,7 @@ export const fetchWallets = async (req: Request, res: Response) => {
   try {
     const wallets = await Wallet.find({
       owner,
-    });
+    }).populate("transaction");
 
     res
       .status(status.OK)
@@ -50,10 +50,20 @@ export const fetchSingleWallet = async (req: Request, res: Response) => {
   const { user_id: owner } = req.query;
 
   try {
-    const wallet = await Wallet.findOne({
-      owner,
-      _id,
-    });
+    const wallet_id = new mongoose.Types.ObjectId(_id);
+
+    const wallets = await Wallet.aggregate([
+      { $match: { _id: wallet_id, owner } },
+      {
+        $lookup: {
+          from: "transactions",
+          localField: "_id",
+          foreignField: "wallet",
+          as: "transactions",
+        },
+      },
+    ]);
+    const wallet = wallets[0];
 
     if (!wallet) {
       throw new NotFoundError("No wallet found");
