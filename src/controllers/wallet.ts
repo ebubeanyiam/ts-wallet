@@ -35,7 +35,7 @@ export const fetchWallets = async (req: Request, res: Response) => {
   try {
     const wallets = await Wallet.find({
       owner,
-    }).populate("transaction");
+    });
 
     res
       .status(status.OK)
