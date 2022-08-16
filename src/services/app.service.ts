@@ -6,7 +6,7 @@ import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 
-import vars from "./vars";
+import vars from "../config/vars";
 import { allowCompression } from "../helpers/compress";
 
 import { NotFoundError } from "../errors";

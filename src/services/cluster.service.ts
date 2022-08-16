@@ -1,9 +1,9 @@
 import cluster from "cluster";
 import os from "os";
 
-import app from "./app";
-import vars from "./vars";
-import { connect } from "./mongoose";
+import app from "./app.service";
+import vars from "../config/vars";
+import { connect } from "./mongoose.service";
 
 // open mongoose connection
 connect();

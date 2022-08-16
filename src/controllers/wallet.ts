@@ -120,10 +120,8 @@ export const creditWallet = async (req: Request, res: Response) => {
       throw new NotFoundError("No wallet found");
     }
 
-    // Convert amount to type number if it is of type string
-    const newAmount = amount * 1;
-
-    wallet.balance = wallet.balance + newAmount;
+    // Race Condition
+    wallet.balance = wallet.balance + Number(amount);
     await wallet.save();
 
     await Transaction.newTrx({

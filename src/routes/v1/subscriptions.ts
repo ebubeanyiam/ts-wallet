@@ -1,0 +1,37 @@
+import express, { Request, Response } from "express";
+import status from "http-status";
+import axios from "axios";
+
+const router = express.Router();
+
+router
+  .route("/")
+  /**
+   */
+  .post(async (req: Request, res: Response) => {
+    const { email } = req.body;
+    const mcData = {
+      members: [{ email_address: email, status: "subscribed" }],
+    };
+
+    if (!email) return;
+
+    axios
+      .post("https://us7.api.mailchimp.com/3.0/lists/fd262e9ab5", mcData, {
+        headers: { Authorization: "auth f59dc5c99f097af1cc6cb653681357d8-us7" },
+      })
+      .then(function (response) {
+        res.status(status.OK).json({
+          status: true,
+          data: response,
+        });
+      })
+      .catch(function (error) {
+        res.status(status.INTERNAL_SERVER_ERROR).json({
+          status: false,
+          data: error,
+        });
+      });
+  });
+
+export default router;

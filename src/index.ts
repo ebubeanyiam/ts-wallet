@@ -1,4 +1,4 @@
-import "./services/cluster";
+import "./services/cluster.service";
 
 // listen to requests without monitoring cluster
 

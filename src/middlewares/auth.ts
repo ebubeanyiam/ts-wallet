@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import vars from "../services/vars";
+import vars from "../config/vars";
 import { NotAuthorizedError } from "../errors";
 
 export const auth = (req: Request, res: Response, next: NextFunction) => {

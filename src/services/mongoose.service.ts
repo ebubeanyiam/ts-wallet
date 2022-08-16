@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import vars from "./vars";
+import vars from "../config/vars";
 
 import { DatabaseConnectionError } from "../errors";
 
