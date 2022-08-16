@@ -10,16 +10,16 @@ router
   .route("/")
   /**
    */
-  .post(async (req: Request, res: Response) => {
+  .post((req: Request, res: Response) => {
     const { email } = req.body;
-    const mcData = {
+    const data = {
       members: [{ email_address: email, status: "subscribed" }],
     };
 
     if (!email) return;
 
     axios
-      .post("https://us7.api.mailchimp.com/3.0/lists/fd262e9ab5", mcData, {
+      .post("https://us7.api.mailchimp.com/3.0/lists/fd262e9ab5", data, {
         headers: { Authorization: `auth ${vars.mcSecret}` },
       })
       .then(function (response) {
