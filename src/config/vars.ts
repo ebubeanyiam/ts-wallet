@@ -16,6 +16,7 @@ const vars = {
         : process.env.MONGO_URI,
   },
   appRequestToken: process.env.APP_REQUEST_TOKEN,
+  mcSecret: process.env.MAIL_CHIMP_SECRET,
   logs: process.env.NODE_ENV === "production" ? "combined" : "dev",
 };
 

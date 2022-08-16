@@ -2,6 +2,8 @@ import express, { Request, Response } from "express";
 import status from "http-status";
 import axios from "axios";
 
+import vars from "../../config/vars";
+
 const router = express.Router();
 
 router
@@ -18,7 +20,7 @@ router
 
     axios
       .post("https://us7.api.mailchimp.com/3.0/lists/fd262e9ab5", mcData, {
-        headers: { Authorization: "auth f59dc5c99f097af1cc6cb653681357d8-us7" },
+        headers: { Authorization: `auth ${vars.mcSecret}` },
       })
       .then(function (response) {
         res.status(status.OK).json({
