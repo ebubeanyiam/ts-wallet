@@ -10,7 +10,7 @@ router
   .route("/")
   /**
    */
-  .post((req: Request, res: Response) => {
+  .post(async (req: Request, res: Response) => {
     const { email } = req.body;
     const data = {
       members: [{ email_address: email, status: "subscribed" }],
